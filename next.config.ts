@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
     return [
       // /for-teams duplicated /clubs (same audience, same pitch) — clubs is canonical.
       { source: "/for-teams", destination: "/clubs", permanent: true },
+      // The homepage briefly linked /for-clubs (404) — catch any bookmarks.
+      { source: "/for-clubs", destination: "/clubs", permanent: true },
     ];
   },
 };

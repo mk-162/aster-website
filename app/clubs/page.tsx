@@ -10,6 +10,7 @@ import RouteMotif from "@/components/RouteMotif";
 import PhoneFrame from "@/components/PhoneFrame";
 import BrowserFrame from "@/components/BrowserFrame";
 import PhotoStrip from "@/components/PhotoStrip";
+import CommunityWall from "@/components/CommunityWall";
 import { appLinks } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -305,6 +306,9 @@ export default function Clubs() {
             ))}
           </div>
         </Section>
+
+        {/* ---- Community wall: the festival collage + phone centrepiece ---- */}
+        <CommunityWall />
 
         {/* ---- Mates tier + plans ---- */}
         <Section tone="stone">

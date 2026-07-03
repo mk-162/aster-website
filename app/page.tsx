@@ -12,6 +12,7 @@ import HeroMap from "@/components/HeroMap";
 import DeviceDuo from "@/components/DeviceDuo";
 import PhotoStrip from "@/components/PhotoStrip";
 import RouteMotif from "@/components/RouteMotif";
+import CommunityWall from "@/components/CommunityWall";
 import { appLinks } from "@/lib/links";
 
 /* ---- Copy (marketing overhaul 2026-07-02: product-led hero, real app
@@ -406,6 +407,9 @@ export default function Home() {
             </div>
           </div>
         </Section>
+
+        {/* ---- Community wall: the festival collage + phone centrepiece ---- */}
+        <CommunityWall />
 
         {/* ---- Audience cards ---- */}
         <Section tone="white">
