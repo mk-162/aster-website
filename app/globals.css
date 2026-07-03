@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ===================================================================
+   Aster brand tokens (ported from the app's tailwind.config.js).
+   Tailwind v4 reads design tokens from @theme; each --color-* /
+   --text-* / --shadow-* / --font-* generates the matching utility.
+   =================================================================== */
+@theme {
+  /* Brand palette */
+  --color-dark: #181E15;
+  --color-dark-soft: #2A3326;
+  --color-stone: #F0F4F4;
+  --color-stone-deep: #E2EAEA;
+
+  --color-mint: #DCEEEB;
+  --color-mint-bg: #EDF8F5;
+  --color-mint-deep: #C8E4E0;
+  --color-mint-teal: #75D6C8;
+
+  --color-lime: #C7F542;
+  --color-lime-bg: #EFFBC4;
+  --color-lime-soft: #F6FCDF;
+  --color-lime-mid: #A8D830;
+  --color-lime-deep: #4A6300;
+
+  --color-gold: #F2C94C;
+  --color-coral: #E8A798;
+
+  /* Semantic text */
+  --color-ink: #181E15;
+  --color-ink-muted: rgba(24, 30, 21, 0.70);
+
+  /* Type scale */
+  --text-tiny: 12px;
+  --text-tiny--line-height: 1.5;
+  --text-small: 14px;
+  --text-small--line-height: 1.5;
+  --text-body: 16px;
+  --text-body--line-height: 1.5;
+  --text-large: 18px;
+  --text-large--line-height: 1.5;
+  --text-title: 24px;
+  --text-title--line-height: 1.2;
+  --text-display: 32px;
+  --text-display--line-height: 1.2;
+
+  /* Fonts (next/font vars set on <html> in layout.tsx) */
+  --font-sans: var(--font-barlow), Inter, system-ui, -apple-system, sans-serif;
+  --font-condensed: var(--font-barlow-condensed), var(--font-barlow), system-ui, sans-serif;
+
+  /* Sharp "pop" offset shadows (zero blur) */
+  --shadow-pop-sm: 2px 2px 0 0 #181E15;
+  --shadow-pop-1: 3px 3px 0 0 #181E15;
+  --shadow-pop-2: 4px 4px 0 0 #181E15;
+  --shadow-pop-3: 6px 6px 0 0 #181E15;
+  --shadow-pop-lime: 4px 4px 0 0 #4A6300;
+  --shadow-float: 0 8px 24px -8px rgba(24, 30, 21, 0.35);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
