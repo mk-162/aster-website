@@ -18,6 +18,7 @@ const STATIC_PAGES: Array<{ path: string; changeFrequency: Freq; priority: numbe
   { path: "/for-watchers", changeFrequency: "monthly", priority: 0.9 },
   { path: "/for-organisers", changeFrequency: "monthly", priority: 0.9 },
   { path: "/clubs", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/for-brand-partners", changeFrequency: "monthly", priority: 0.8 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
   // Sport landing pages
   { path: "/cycling", changeFrequency: "monthly", priority: 0.8 },

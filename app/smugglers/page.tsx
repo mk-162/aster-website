@@ -287,7 +287,7 @@ export default function SmugglersPage() {
                   each mode?
                 </p>
                 <Button
-                  href="https://astertrack.app/battery-use"
+                  href="/battery-use"
                   variant="secondary"
                   size="sm"
                 >

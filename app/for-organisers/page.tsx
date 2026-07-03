@@ -187,8 +187,8 @@ export default function ForOrganisers() {
           </h2>
           <p className="text-lg leading-normal text-dark/70 max-w-[56ch] mb-10">
             The live map and leaderboard carry sponsor display slots — and
-            they&apos;re yours to sell. A £500 map-banner sale beats a £349
-            event fee before the gun has even fired. Give your sponsors
+            they&apos;re yours to sell. One map-banner sale typically covers your
+            whole Aster subscription before the gun has even fired. Give your sponsors
             something to point at: their name on the screen every watcher is
             glued to, plus a post-event impressions report to prove it.
           </p>
@@ -208,7 +208,12 @@ export default function ForOrganisers() {
               </p>
               <p className="text-[15px] leading-normal text-dark/70 m-0">
                 After the event, a report of watcher numbers and sponsor
-                exposure — the evidence your sponsors renew on.
+                exposure — the evidence your sponsors renew on. Point your
+                sponsors at{" "}
+                <a href="/for-brand-partners" className="underline underline-offset-2">
+                  how brand partnership works on Aster
+                </a>
+                .
               </p>
             </Card>
             <Card tone="dark" className="!shadow-pop-lime">
@@ -216,8 +221,8 @@ export default function ForOrganisers() {
                 The maths is short.
               </p>
               <p className="text-[15px] leading-normal text-mint/70 m-0">
-                A £500 map banner more than covers your event fee. Included in
-                every paid band — not a separate tier.
+                One map banner more than covers your Aster subscription. Included
+                in every plan — not a separate tier.
               </p>
             </Card>
           </div>

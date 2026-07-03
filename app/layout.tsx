@@ -20,7 +20,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://astertrack.app"),
+  metadataBase: new URL("https://www.astertrack.app"),
   title: {
     default: "Aster — Live tracking for endurance racing",
     template: "%s · Aster",

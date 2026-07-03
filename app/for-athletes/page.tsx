@@ -64,11 +64,11 @@ const softwareAppJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Aster",
-  url: "https://astertrack.app/",
+  url: "https://www.astertrack.app/",
   applicationCategory: "SportsApplication",
   operatingSystem: "Android, iOS, Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
-  publisher: { "@id": "https://astertrack.app/#organization" },
+  publisher: { "@id": "https://www.astertrack.app/#organization" },
 };
 
 export default function ForAthletes() {

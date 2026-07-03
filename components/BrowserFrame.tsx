@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function BrowserFrame({
   src,
   alt,
-  url = "watchthedot.app/watch/…",
+  url = "astertrack.app/watch/…",
   priority = false,
   className = "",
   sizes = "(min-width: 1024px) 640px, 92vw",

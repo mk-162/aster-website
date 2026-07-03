@@ -7,6 +7,6 @@ export const appLinks = {
   discover: "https://astertrack.app/discover",
   watch: (slug: string) => `https://astertrack.app/watch/${slug}`,
   event: (slug: string) => `https://astertrack.app/events/${slug}`,
-  /* Placeholder until the organiser contact route is decided. */
-  organiserDemo: "#demo",
+  /* Organiser/enterprise/brand conversations land on the contact form. */
+  organiserDemo: "/contact?topic=organiser",
 } as const;

@@ -19,6 +19,7 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
       { label: "For watchers", href: "/for-watchers" },
       { label: "For clubs", href: "/clubs" },
       { label: "For organisers", href: "/for-organisers" },
+      { label: "For brand partners", href: "/for-brand-partners" },
       { label: "Cycling", href: "/cycling" },
       { label: "Running", href: "/running" },
     ],

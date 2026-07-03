@@ -357,12 +357,12 @@ export default async function VersusPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Aster", item: "https://astertrack.app/" },
+      { "@type": "ListItem", position: 1, name: "Aster", item: "https://www.astertrack.app/" },
       {
         "@type": "ListItem",
         position: 2,
         name: `Aster vs ${data.competitor}`,
-        item: `https://astertrack.app/vs/${competitor}`,
+        item: `https://www.astertrack.app/vs/${competitor}`,
       },
     ],
   };

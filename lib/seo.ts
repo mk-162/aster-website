@@ -1,8 +1,9 @@
 /** Shared SEO constants — single source of truth for the canonical
- * domain and the JSON-LD entity @ids used across pages. The site lives
- * at the apex domain; the app moves to app.astertrack.app. */
+ * domain and the JSON-LD entity @ids used across pages. The marketing
+ * site lives at www.astertrack.app; the APP owns the apex
+ * (astertrack.app) — never point canonicals there. */
 
-export const SITE_URL = "https://astertrack.app";
+export const SITE_URL = "https://www.astertrack.app";
 
 /** Entity @ids — MUST match the values used in app/about/page.tsx so
  * the Organization/Person graph merges into single entities. */

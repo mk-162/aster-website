@@ -24,17 +24,17 @@ export const metadata: Metadata = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://astertrack.app/#organization",
+  "@id": "https://www.astertrack.app/#organization",
   name: "Aster",
   legalName: "Manual Focus Ltd",
-  url: "https://astertrack.app/",
+  url: "https://www.astertrack.app/",
   slogan: "The live experience for endurance sport.",
   description:
     "Phone-first live tracking and sharing platform for endurance sport. UK pre-seed, SEIS + EIS qualified.",
   foundingDate: "2025",
   founder: {
     "@type": "Person",
-    "@id": "https://astertrack.app/about#james-vickers",
+    "@id": "https://www.astertrack.app/about#james-vickers",
     name: "James Vickers",
     jobTitle: "Founder",
     sameAs: ["https://www.linkedin.com/in/james-vickers-cycling"],
@@ -44,9 +44,9 @@ const orgJsonLd = {
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://astertrack.app/about#james-vickers",
+  "@id": "https://www.astertrack.app/about#james-vickers",
   name: "James Vickers",
-  url: "https://astertrack.app/about",
+  url: "https://www.astertrack.app/about",
   description:
     "15 years in cycling industry marketing. Co-founder of RGT Cycling (acquired by Wahoo Fitness 2022). Marketing Consultant at Ribble Cycles. MCIM, MCPR. Founder of Aster.",
   knowsAbout: [

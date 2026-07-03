@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // /for-teams duplicated /clubs (same audience, same pitch) — clubs is canonical.
+      { source: "/for-teams", destination: "/clubs", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

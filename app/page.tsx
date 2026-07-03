@@ -54,7 +54,7 @@ const audiences = [
     label: "Clubs",
     title: "Every Sunday, on one map.",
     body: "Recurring rides and runs, a members-only live map, and ride-leader tools that know who's off the back.",
-    href: "/for-clubs",
+    href: "/clubs",
   },
   {
     kicker: "For organisers",
@@ -112,11 +112,11 @@ export const metadata: Metadata = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://astertrack.app/#organization",
+  "@id": "https://www.astertrack.app/#organization",
   name: "Aster",
   legalName: "Manual Focus Ltd",
-  url: "https://astertrack.app/",
-  logo: "https://astertrack.app/brand/aster-mark-lime.svg",
+  url: "https://www.astertrack.app/",
+  logo: "https://www.astertrack.app/brand/aster-mark-lime.svg",
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -131,7 +131,7 @@ const orgJsonLd = {
   ],
   founder: {
     "@type": "Person",
-    "@id": "https://astertrack.app/about#james-vickers",
+    "@id": "https://www.astertrack.app/about#james-vickers",
     name: "James Vickers",
   },
 };
@@ -139,11 +139,11 @@ const orgJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://astertrack.app/#website",
+  "@id": "https://www.astertrack.app/#website",
   name: "Aster",
-  url: "https://astertrack.app/",
+  url: "https://www.astertrack.app/",
   inLanguage: "en-GB",
-  publisher: { "@id": "https://astertrack.app/#organization" },
+  publisher: { "@id": "https://www.astertrack.app/#organization" },
 };
 
 export default function Home() {

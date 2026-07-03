@@ -14,7 +14,7 @@ export default function DeviceDuo({
   desktopAlt = "Following a live race in the browser — map and leaderboard",
   phoneSrc = "/images/app/live-map-phone.png",
   phoneAlt = "The same live race on a phone",
-  url = "watchthedot.app/…",
+  url = "astertrack.app/…",
   priority = false,
   className = "",
 }: {
