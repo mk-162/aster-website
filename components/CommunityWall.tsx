@@ -16,6 +16,9 @@ interface WallPhoto {
   alt: string;
   /** Tailwind classes for span/rotation variety. */
   className?: string;
+  /** Overlaid social chip: initials for the avatar circles + watcher count.
+   * Makes the collage read as a live wall of shared races, not a gallery. */
+  watchers?: { initials: string[]; count: number };
 }
 
 const photos: WallPhoto[] = [
@@ -23,55 +26,88 @@ const photos: WallPhoto[] = [
     src: "/images/cycling/08-two-finish.webp",
     alt: "Two riders celebrating side by side as they cross a finish line",
     className: "row-span-2 rotate-[-1.5deg]",
+    watchers: { initials: ["KH", "SM", "JP"], count: 43 },
   },
   {
     src: "/images/cycling/16-portrait-female-clean.webp",
     alt: "A cyclist grinning at the camera after a race",
     className: "rotate-[1deg]",
+    watchers: { initials: ["AL", "RB"], count: 12 },
   },
   {
     src: "/images/running-holding/r1-badger.webp",
     alt: "Trail runners and a dog sharing a hillside path",
     className: "rotate-[-1deg]",
+    watchers: { initials: ["TW", "EM", "GD"], count: 18 },
   },
   {
     src: "/images/cycling/04-two-drafting.webp",
     alt: "Two riders drafting close, deep in conversation with the road",
     className: "rotate-[1.5deg]",
+    watchers: { initials: ["MB", "CV"], count: 9 },
   },
   {
     src: "/images/cycling/18-gravel-rollout-dust.webp",
     alt: "A gravel field rolling out through golden dust",
     className: "row-span-2 rotate-[1deg]",
+    watchers: { initials: ["FO", "LN", "PK"], count: 87 },
   },
   {
     src: "/images/running-holding/r2-transylvania.webp",
     alt: "Runners strung along a mountain trail mid-race",
     className: "rotate-[-1.5deg]",
+    watchers: { initials: ["IS", "DH"], count: 31 },
   },
   {
     src: "/images/cycling/02-female-three-quarter.webp",
     alt: "A rider mid-effort, eyes up the road",
     className: "rotate-[1deg]",
+    watchers: { initials: ["JR", "AB"], count: 15 },
   },
   {
     src: "/images/cycling/11-road-startline-misty.webp",
     alt: "A misty start line, riders packed and waiting for the off",
     className: "rotate-[-1deg]",
+    watchers: { initials: ["WT", "NC", "OD"], count: 126 },
   },
   {
     src: "/images/cycling/13-road-female-wet.webp",
     alt: "A road cyclist pushing on through rain and spray",
     className: "rotate-[1.5deg]",
+    watchers: { initials: ["HP", "KS"], count: 22 },
   },
   {
     src: "/images/cycling/14-peloton-twilight-climb.webp",
     alt: "A group stretched up a twilight climb together",
     className: "rotate-[-1deg]",
+    watchers: { initials: ["EV", "MG", "TF"], count: 58 },
   },
 ];
 
-function WallTile({ src, alt, className = "" }: WallPhoto) {
+/* Brand-token backgrounds cycled across the avatar circles. */
+const AVATAR_TONES = ["bg-lime", "bg-mint", "bg-gold"] as const;
+
+function WatcherChip({ initials, count }: NonNullable<WallPhoto["watchers"]>) {
+  return (
+    <div className="absolute bottom-2 left-2 z-[1] flex items-center gap-1.5 rounded-full border border-mint/25 bg-dark/80 py-1 pl-1 pr-2.5 backdrop-blur-sm">
+      <div className="flex -space-x-1.5">
+        {initials.map((ini, i) => (
+          <span
+            key={ini}
+            className={`flex h-5 w-5 items-center justify-center rounded-full border-2 border-dark text-[9px] font-bold text-dark ${AVATAR_TONES[i % AVATAR_TONES.length]}`}
+          >
+            {ini}
+          </span>
+        ))}
+      </div>
+      <span className="text-[11px] font-semibold leading-none text-mint">
+        {count} watching
+      </span>
+    </div>
+  );
+}
+
+function WallTile({ src, alt, className = "", watchers }: WallPhoto) {
   return (
     <div
       className={`relative overflow-hidden rounded-2xl border-2 border-dark bg-stone shadow-pop-2 transition-transform duration-200 hover:scale-[1.03] hover:z-10 ${className}`}
@@ -83,6 +119,7 @@ function WallTile({ src, alt, className = "" }: WallPhoto) {
         sizes="(min-width: 1024px) 25vw, 50vw"
         className="object-cover"
       />
+      {watchers && <WatcherChip {...watchers} />}
     </div>
   );
 }
