@@ -1,0 +1,85 @@
+/* ===========================================================================
+ * ASTER — COLOR TOKENS
+ * ---------------------------------------------------------------------------
+ * Base palette + semantic aliases. The brand reads through a tight set:
+ * a near-black "dark", an electric "lime" go-colour, a calming "mint"
+ * surface family, plus warm accents (gold, coral) used sparingly.
+ *
+ * Contrast rule: LIME IS A BACKGROUND/ACCENT, NEVER TEXT ON WHITE.
+ * Lime + white text fails WCAG AA. For lime-as-text on light surfaces,
+ * use --lime-deep (6.85:1 on white). Lime sits under dark text only.
+ * =========================================================================== */
+
+:root {
+  /* ---- Core neutrals ---- */
+  --dark: #181E15;          /* near-black olive — backgrounds + body text on light */
+  --dark-soft: #2A3326;     /* lifted dark — secondary dark surfaces, hovers */
+  --white: #FFFFFF;
+  --stone: #F0F4F4;         /* the brand "outside" colour — page canvas, app wrap */
+  --stone-deep: #E2EAEA;    /* divider / inset stone */
+
+  /* ---- Lime (primary action / energy) ---- */
+  --lime: #C7F542;          /* the "go" colour — CTA fills + accents on dark */
+  --lime-bg: #EFFBC4;       /* pale lime tint — chips, hover wash, soft fills */
+  --lime-soft: #F6FCDF;     /* faintest lime — large wash backgrounds */
+  --lime-mid: #A8D830;      /* hover state for lime fills */
+  --lime-deep: #4A6300;     /* AA-safe lime for TEXT on light (6.85:1) */
+
+  /* ---- Mint (calm surfaces / dark-bg text) ---- */
+  --mint: #DCEEEB;          /* soft surface; text colour on dark backgrounds */
+  --mint-bg: #EDF8F5;       /* lightest mint — section washes */
+  --mint-deep: #C8E4E0;     /* mint hover / secondary button */
+  --mint-teal: #75D6C8;     /* saturated mint — data accents, live pulse rings */
+
+  /* ---- Warm accents (sparing) ---- */
+  --gold: #F2C94C;          /* podium / featured / sponsor highlight */
+  --coral: #E8A798;         /* soft warm accent — illustration, tertiary */
+  --red: #EF4444;           /* DESTRUCTIVE ONLY — SOS, sign out, delete */
+  --red-deep: #DC2626;      /* destructive hover */
+
+  /* ---- Rider category colours (functional, not brand) ---- */
+  --rider-solo: #EF4444;
+  --rider-pair: #3B82F6;
+  --rider-women: #22C55E;
+  --rider-open: #F97316;
+  --rider-team: #A855F7;
+
+  /* ---- Neutral grey ramp (UI chrome, muted text on white) ---- */
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+
+  /* =======================================================================
+   * SEMANTIC ALIASES — prefer these in components
+   * ===================================================================== */
+
+  /* Text */
+  --text-strong: var(--dark);          /* headings, primary copy on light */
+  --text-body: var(--dark);            /* body copy on light */
+  --text-muted: rgba(24, 30, 21, 0.70);/* secondary copy on light */
+  --text-faint: rgba(24, 30, 21, 0.45);/* captions, metadata */
+  --text-on-dark: var(--mint);         /* body copy on dark surfaces */
+  --text-on-dark-muted: rgba(220, 238, 235, 0.65);
+  --text-accent: var(--lime-deep);     /* links / kickers on light (AA-safe) */
+  --text-accent-on-dark: var(--lime);  /* links / kickers on dark */
+
+  /* Surfaces */
+  --surface-page: var(--white);        /* default page background */
+  --surface-canvas: var(--stone);      /* app "outside" / sectioned canvas */
+  --surface-card: var(--white);        /* card fill */
+  --surface-card-soft: var(--mint-bg); /* soft / hover card fill */
+  --surface-inverse: var(--dark);      /* dark sections / hero */
+  --surface-accent: var(--lime);       /* lime feature fill */
+  --surface-accent-soft: var(--lime-bg);
+
+  /* Borders */
+  --border-strong: var(--dark);        /* the 2px neo-brutalist border */
+  --border-soft: rgba(24, 30, 21, 0.20);
+  --border-on-dark: rgba(220, 238, 235, 0.15);
+  --border-focus: var(--lime-deep);
+
+  /* Status */
+  --status-live: var(--lime);
+  --status-live-text: var(--lime-deep);
+  --status-danger: var(--red);
+}

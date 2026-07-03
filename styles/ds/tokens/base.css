@@ -1,0 +1,140 @@
+/* ===========================================================================
+ * ASTER — BASE LAYER
+ * Element resets + the brand's core reusable classes (button, card, pill,
+ * input, kicker, section-title). Mirrors the production app's index.css
+ * component layer, expressed against the design-system tokens so cards,
+ * slides, and UI kits all render with real brand styling.
+ * =========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-size: var(--text-body-size);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background-color: var(--surface-canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Display headings: condensed, uppercase, tight ---- */
+.aster-display,
+.aster-h1, .aster-h2 {
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-none);
+  color: var(--text-strong);
+  margin: 0;
+}
+.aster-h1 { font-size: var(--display-xl); }
+.aster-h2 { font-size: var(--display-lg); }
+
+/* Section title — the workhorse header in-app + marketing */
+.aster-section-title {
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-title-size);
+  line-height: var(--text-title-lh);
+  color: var(--text-strong);
+  margin: 0;
+}
+
+/* Kicker — small uppercase condensed label above a heading, lime-deep */
+.aster-kicker {
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-tiny-size);
+  color: var(--text-accent);
+  margin: 0;
+}
+
+/* ---- Card — white, 2px dark border, sharp offset shadow ---- */
+.aster-card {
+  background: var(--surface-card);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-pop-2);
+}
+
+/* ---- Buttons ---- */
+.aster-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 56px;
+  padding: 0 var(--space-6);
+  font-family: var(--font-sans);
+  font-size: var(--text-large-size);
+  font-weight: var(--weight-semibold);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard),
+              background-color var(--duration-fast) var(--ease-standard);
+}
+.aster-btn--primary {
+  background: var(--lime);
+  color: var(--dark);
+  box-shadow: var(--shadow-pop-lime);
+}
+.aster-btn--primary:hover { background: var(--lime-mid); }
+.aster-btn--primary:active {
+  transform: translate(var(--press-nudge), var(--press-nudge));
+  box-shadow: none;
+}
+.aster-btn--secondary {
+  background: var(--mint);
+  color: var(--dark);
+  box-shadow: var(--shadow-pop-1);
+}
+.aster-btn--secondary:hover { background: var(--mint-deep); }
+.aster-btn--secondary:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* ---- Status pill ---- */
+.aster-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-tiny-size);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+}
+.aster-pill--live { background: var(--lime-bg); color: var(--lime-deep); }
+.aster-pill--soon { background: var(--mint); color: var(--dark); }
+
+/* Live pulse dot */
+.aster-live-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+  animation: aster-pulse-live 2s ease-in-out infinite;
+}
+@keyframes aster-pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aster-live-dot { animation: none; }
+}

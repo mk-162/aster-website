@@ -1,0 +1,12 @@
+/* Aster brand webfonts.
+ *
+ * Barlow            — body, UI, paragraph copy
+ * Barlow Condensed  — display headers, the wordmark, numerals (uppercase)
+ * IBM Plex Serif    — rare editorial / quote accent (press, longform)
+ *
+ * All three are Google Fonts; loaded via the Google Fonts CSS API.
+ * Consumers with network access pick these up automatically. If you
+ * need true offline self-hosting, drop the .woff2 binaries into
+ * tokens/fonts/ and replace this @import with @font-face rules. */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap');

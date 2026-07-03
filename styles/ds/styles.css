@@ -1,0 +1,13 @@
+/* ===========================================================================
+ * ASTER DESIGN SYSTEM — global entry point
+ * ---------------------------------------------------------------------------
+ * Consumers link THIS one file. It is an @import manifest only; all real
+ * declarations live in the imported token + base layers. Order matters:
+ * fonts → tokens (colors, type, spacing) → base (uses the tokens).
+ * =========================================================================== */
+
+@import url('./tokens/fonts.css');
+@import url('./tokens/colors.css');
+@import url('./tokens/typography.css');
+@import url('./tokens/spacing.css');
+@import url('./tokens/base.css');

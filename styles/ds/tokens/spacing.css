@@ -1,0 +1,66 @@
+/* ===========================================================================
+ * ASTER — SPACING, RADII, SHADOWS, MOTION
+ * ---------------------------------------------------------------------------
+ * The neo-brutalist signature lives here: sharp, BLURLESS offset shadows
+ * ("pop") in dark olive, paired with the 2px dark border. Radii are gentle
+ * (12–16px). Motion is quick and physical — press states nudge the element
+ * toward its shadow and drop it, like pressing a real button.
+ * =========================================================================== */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Layout */
+  --container-max: 1200px;     /* marketing content column */
+  --container-wide: 1280px;
+  --app-max: 480px;            /* phone-shaped in-app shell */
+  --nav-height: 72px;
+  --section-y: clamp(40px, 6vw, 64px);   /* @kind spacing */
+  --gutter: clamp(20px, 4vw, 48px);      /* @kind spacing */
+
+  /* ---- Radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;     /* buttons, inputs, chips (xl in app) */
+  --radius-lg: 16px;     /* cards (2xl in app) */
+  --radius-xl: 24px;
+  --radius-pill: 999px;  /* status pills, tags */
+  --radius-circle: 50%;
+
+  /* ---- Borders ---- */
+  --border-width: 2px;             /* the brand border weight */
+  --border: 2px solid var(--dark);
+
+  /* ---- "Pop" shadows — sharp, no blur, dark-olive offset ---- */
+  --shadow-pop-1: 3px 3px 0 0 var(--dark);
+  --shadow-pop-2: 4px 4px 0 0 var(--dark);
+  --shadow-pop-3: 6px 6px 0 0 var(--dark);
+  --shadow-pop-lime: 4px 4px 0 0 var(--lime-deep);   /* under lime CTAs */
+  --shadow-pop-sm: 2px 2px 0 0 var(--dark);
+
+  /* Soft shadow — used ONLY for floating UI over maps/photos (rider card,
+   * popovers), never on brand cards which use the pop offset instead. */
+  --shadow-float: 0 8px 24px -8px rgba(24, 30, 21, 0.35);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1); /* @kind other */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);     /* @kind other */
+  --duration-fast: 120ms;                        /* @kind other */
+  --duration-base: 200ms;                        /* @kind other */
+  --duration-slow: 320ms;                        /* @kind other */
+
+  /* Press-nudge: shift toward the shadow by its offset, drop the shadow.
+   * Apply translate(var(--press-nudge)) + shadow:none on :active. */
+  --press-nudge: 2px;
+}

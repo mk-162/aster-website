@@ -1,69 +1,96 @@
-@import "tailwindcss";
+/* Aster marketing site — global styles.
+ *
+ * The design system is the packaged `styles/ds` bundle (built from the PWA
+ * brand: neo-brutalist dark/lime/mint, Barlow + Barlow Condensed, 2px dark
+ * borders, sharp pop shadows). Tailwind v4 reads the bridge tokens in @theme
+ * below so utilities like `bg-lime`, `text-mint`, `font-condensed`,
+ * `shadow-pop-2` resolve to the DS variables — one source of truth.
+ */
+/* Token layers imported directly (the DS manifest uses `@import url()` which
+ * the bundler rejects; fonts.css is superseded by next/font in layout.tsx). */
+@import '../styles/ds/tokens/colors.css';
+@import '../styles/ds/tokens/typography.css';
+@import '../styles/ds/tokens/spacing.css';
+@import '../styles/ds/tokens/base.css';
+@import 'tailwindcss';
 
-/* ===================================================================
-   Aster brand tokens (ported from the app's tailwind.config.js).
-   Tailwind v4 reads design tokens from @theme; each --color-* /
-   --text-* / --shadow-* / --font-* generates the matching utility.
-   =================================================================== */
-@theme {
-  /* Brand palette */
-  --color-dark: #181E15;
-  --color-dark-soft: #2A3326;
-  --color-stone: #F0F4F4;
-  --color-stone-deep: #E2EAEA;
+@theme inline {
+  /* ---- Colours (bridge DS vars → Tailwind utilities) ---- */
+  --color-dark: var(--dark);
+  --color-dark-soft: var(--dark-soft);
+  --color-stone: var(--stone);
+  --color-stone-deep: var(--stone-deep);
+  --color-lime: var(--lime);
+  --color-lime-bg: var(--lime-bg);
+  --color-lime-soft: var(--lime-soft);
+  --color-lime-mid: var(--lime-mid);
+  --color-lime-deep: var(--lime-deep);
+  --color-mint: var(--mint);
+  --color-mint-bg: var(--mint-bg);
+  --color-mint-deep: var(--mint-deep);
+  --color-mint-teal: var(--mint-teal);
+  --color-gold: var(--gold);
+  --color-coral: var(--coral);
 
-  --color-mint: #DCEEEB;
-  --color-mint-bg: #EDF8F5;
-  --color-mint-deep: #C8E4E0;
-  --color-mint-teal: #75D6C8;
-
-  --color-lime: #C7F542;
-  --color-lime-bg: #EFFBC4;
-  --color-lime-soft: #F6FCDF;
-  --color-lime-mid: #A8D830;
-  --color-lime-deep: #4A6300;
-
-  --color-gold: #F2C94C;
-  --color-coral: #E8A798;
-
-  /* Semantic text */
-  --color-ink: #181E15;
-  --color-ink-muted: rgba(24, 30, 21, 0.70);
-
-  /* Type scale */
-  --text-tiny: 12px;
-  --text-tiny--line-height: 1.5;
-  --text-small: 14px;
-  --text-small--line-height: 1.5;
-  --text-body: 16px;
-  --text-body--line-height: 1.5;
-  --text-large: 18px;
-  --text-large--line-height: 1.5;
-  --text-title: 24px;
-  --text-title--line-height: 1.2;
-  --text-display: 32px;
-  --text-display--line-height: 1.2;
-
-  /* Fonts (next/font vars set on <html> in layout.tsx) */
-  --font-sans: var(--font-barlow), Inter, system-ui, -apple-system, sans-serif;
-  --font-condensed: var(--font-barlow-condensed), var(--font-barlow), system-ui, sans-serif;
-
-  /* Sharp "pop" offset shadows (zero blur) */
-  --shadow-pop-sm: 2px 2px 0 0 #181E15;
-  --shadow-pop-1: 3px 3px 0 0 #181E15;
-  --shadow-pop-2: 4px 4px 0 0 #181E15;
-  --shadow-pop-3: 6px 6px 0 0 #181E15;
-  --shadow-pop-lime: 4px 4px 0 0 #4A6300;
-  --shadow-float: 0 8px 24px -8px rgba(24, 30, 21, 0.35);
+  /* ---- Type ---- */
+  --font-sans: var(--font-sans);
+  --font-condensed: var(--font-condensed);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
+@theme {
+  /* ---- Pop shadows (sharp, zero blur — the brand signature) ---- */
+  --shadow-pop-sm: 2px 2px 0 0 #181e15;
+  --shadow-pop-1: 3px 3px 0 0 #181e15;
+  --shadow-pop-2: 4px 4px 0 0 #181e15;
+  --shadow-pop-3: 6px 6px 0 0 #181e15;
+  --shadow-pop-lime: 4px 4px 0 0 #4a6300;
+}
+
+/* Marketing content column (DS layout rule: max 1200px). */
+@utility container-site {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
 }
 
 body {
-  background: #ffffff;
-  color: var(--color-dark);
+  background: var(--stone);
+  color: var(--dark);
   font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+}
+
+/* PhotoStrip drift — the slow Ken-Burns pans ported from the PWA marketing
+ * site (frontend/src/index.css). All four drift purely horizontally with
+ * varying amplitude + direction: reads as four pans by the same photographer.
+ *   -1 horizontal pan, fast amplitude      -2 opposite, fast
+ *   -3 horizontal pan, slow amplitude      -4 opposite, slow            */
+.photo-drift-1, .photo-drift-2, .photo-drift-3, .photo-drift-4 {
+  transform-origin: center;
+  will-change: transform;
+}
+.photo-drift-1 { animation: photo-drift-1 30s ease-in-out infinite alternate; }
+.photo-drift-2 { animation: photo-drift-2 30s ease-in-out infinite alternate; }
+.photo-drift-3 { animation: photo-drift-3 36s ease-in-out infinite alternate; }
+.photo-drift-4 { animation: photo-drift-4 36s ease-in-out infinite alternate; }
+@keyframes photo-drift-1 {
+  from { transform: scale(1.06) translate3d(1.5%, 0, 0); }
+  to   { transform: scale(1.09) translate3d(-1.5%, 0, 0); }
+}
+@keyframes photo-drift-2 {
+  from { transform: scale(1.06) translate3d(-1.5%, 0, 0); }
+  to   { transform: scale(1.09) translate3d(1.5%, 0, 0); }
+}
+@keyframes photo-drift-3 {
+  from { transform: scale(1.06) translate3d(1%, 0, 0); }
+  to   { transform: scale(1.08) translate3d(-1%, 0, 0); }
+}
+@keyframes photo-drift-4 {
+  from { transform: scale(1.06) translate3d(-1%, 0, 0); }
+  to   { transform: scale(1.08) translate3d(1%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-drift-1, .photo-drift-2, .photo-drift-3, .photo-drift-4 { animation: none; }
 }
