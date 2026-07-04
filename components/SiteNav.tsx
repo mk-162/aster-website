@@ -56,18 +56,23 @@ export default function SiteNav() {
           </a>
         </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="lg:hidden inline-flex flex-col justify-center gap-[5px] w-11 h-11 items-center border-2 border-mint/40 rounded-xl"
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={`block w-5 h-[2px] bg-mint transition-transform ${open ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`block w-5 h-[2px] bg-mint ${open ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-[2px] bg-mint transition-transform ${open ? "-rotate-45 -translate-y-[7px]" : ""}`} />
-        </button>
+        {/* Mobile: Go-to-app CTA in the bar + hamburger */}
+        <div className="lg:hidden flex items-center gap-3">
+          <Button href={appLinks.login} variant="primary" size="sm">
+            Go to app
+          </Button>
+          <button
+            type="button"
+            className="inline-flex flex-col justify-center gap-[5px] w-11 h-11 items-center border-2 border-mint/40 rounded-xl"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className={`block w-5 h-[2px] bg-mint transition-transform ${open ? "rotate-45 translate-y-[7px]" : ""}`} />
+            <span className={`block w-5 h-[2px] bg-mint ${open ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-[2px] bg-mint transition-transform ${open ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile full-screen sheet */}
