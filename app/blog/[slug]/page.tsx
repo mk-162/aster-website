@@ -213,7 +213,7 @@ export default async function BlogPostPage({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button href={appLinks.discover}>Watch a live event</Button>
-              <Button href={appLinks.app} variant="secondary">
+              <Button href={appLinks.login} variant="secondary">
                 Get the app
               </Button>
             </div>

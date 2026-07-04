@@ -191,7 +191,7 @@ export default function Home() {
                   <p className="font-condensed uppercase tracking-[0.05em] font-bold text-lime text-base leading-tight">
                     Free forever — for individuals
                   </p>
-                  <Button href={appLinks.app} variant="primary" size="sm">
+                  <Button href={appLinks.login} variant="primary" size="sm">
                     Download now
                   </Button>
                 </div>

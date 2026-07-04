@@ -3,7 +3,13 @@
  * astertrack.app elsewhere. */
 export const appLinks = {
   app: "https://astertrack.app",
-  signup: "https://astertrack.app/signup",
+  /* The app's front door: sign-in + create-account tabs + get-the-app links.
+   * Logged-out visitors hitting the bare app root get bounced back to www,
+   * so every actionable CTA must land here (or deeper), never on `app`. */
+  login: "https://astertrack.app/login",
+  /* /signup is NOT a route in the app — ?mode=signup opens the
+   * Create Account tab on /login (works on prod main and staging). */
+  signup: "https://astertrack.app/login?mode=signup",
   discover: "https://astertrack.app/discover",
   watch: (slug: string) => `https://astertrack.app/watch/${slug}`,
   event: (slug: string) => `https://astertrack.app/events/${slug}`,

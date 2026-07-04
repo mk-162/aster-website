@@ -7,7 +7,7 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
     links: [
-      { label: "Open the app", href: appLinks.app },
+      { label: "Log in", href: appLinks.login },
       { label: "Start tracking — free", href: appLinks.signup },
       { label: "Discover events", href: "/discover" },
     ],

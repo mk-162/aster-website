@@ -37,8 +37,14 @@ export default function SiteNav() {
               {l.label}
             </Link>
           ))}
-          <Button href={appLinks.app} variant="primary" size="sm">
-            Open the app
+          <a
+            href={appLinks.login}
+            className="font-condensed uppercase tracking-[0.06em] font-semibold text-sm text-mint hover:text-lime py-1.5"
+          >
+            Log in
+          </a>
+          <Button href={appLinks.signup} variant="primary" size="sm">
+            Get started
           </Button>
           <a
             href="https://help.astertrack.app"
@@ -80,9 +86,16 @@ export default function SiteNav() {
               {l.label}
             </Link>
           ))}
+          <a
+            href={appLinks.login}
+            onClick={() => setOpen(false)}
+            className="font-condensed uppercase tracking-[0.04em] font-bold text-3xl text-mint hover:text-lime py-3 border-b-2 border-mint/15"
+          >
+            Log in
+          </a>
           <div className="pt-6 flex items-center gap-4">
-            <Button href={appLinks.app} variant="primary" size="lg">
-              Open the app
+            <Button href={appLinks.signup} variant="primary" size="lg">
+              Get started
             </Button>
             <a
               href="https://help.astertrack.app"
