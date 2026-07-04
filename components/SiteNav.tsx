@@ -43,8 +43,8 @@ export default function SiteNav() {
           >
             Log in
           </a>
-          <Button href={appLinks.signup} variant="primary" size="sm">
-            Get started
+          <Button href={appLinks.login} variant="primary" size="sm">
+            Go to app
           </Button>
           <a
             href="https://help.astertrack.app"
@@ -94,8 +94,8 @@ export default function SiteNav() {
             Log in
           </a>
           <div className="pt-6 flex items-center gap-4">
-            <Button href={appLinks.signup} variant="primary" size="lg">
-              Get started
+            <Button href={appLinks.login} variant="primary" size="lg">
+              Go to app
             </Button>
             <a
               href="https://help.astertrack.app"
