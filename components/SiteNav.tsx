@@ -37,9 +37,12 @@ export default function SiteNav() {
               {l.label}
             </Link>
           ))}
-          {/* One door: /login carries both tabs (sign in / create account)
-              plus the get-the-app links — returning users are one tab-click
-              away, and "Log in" stays in the footer + mobile menu. */}
+          <a
+            href={appLinks.login}
+            className="font-condensed uppercase tracking-[0.06em] font-semibold text-sm text-mint hover:text-lime py-1.5"
+          >
+            Log in
+          </a>
           <Button href={appLinks.signup} variant="primary" size="sm">
             Get started
           </Button>
