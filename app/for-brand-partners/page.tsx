@@ -170,9 +170,11 @@ export default function ForBrandPartners() {
               </Button>
             </div>
             <BrowserFrame
-              src="/images/app/live-map-desktop.png"
+              src="/images/app/live-map-desktop.webp"
               alt="The Aster spectator view of a live event: map with athlete dots and route, plus the live leaderboard where a sponsor slot sits"
               url="astertrack.app/watch/your-event"
+              videoSrc="/images/app/replay-desktop.mp4"
+              poster="/images/app/replay-desktop-poster.webp"
             />
           </div>
         </Section>

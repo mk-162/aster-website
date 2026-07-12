@@ -172,9 +172,11 @@ export default function ForOrganisers() {
               </Button>
             </div>
             <BrowserFrame
-              src="/images/app/live-map-desktop.png"
+              src="/images/app/live-map-desktop.webp"
               alt="The Aster spectator view of a live 100-rider race: map with rider dots and route, plus the live leaderboard panel"
               url="astertrack.app/watch/your-event"
+              videoSrc="/images/app/replay-desktop.mp4"
+              poster="/images/app/replay-desktop-poster.webp"
             />
           </div>
         </Section>

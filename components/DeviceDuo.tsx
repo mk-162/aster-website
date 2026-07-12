@@ -10,13 +10,17 @@ import BrowserFrame from "./BrowserFrame";
 import PhoneFrame from "./PhoneFrame";
 
 export default function DeviceDuo({
-  desktopSrc = "/images/app/live-map-desktop.png",
+  desktopSrc = "/images/app/live-map-desktop.webp",
   desktopAlt = "Following a live race in the browser — map and leaderboard",
-  phoneSrc = "/images/app/live-map-phone.png",
+  phoneSrc = "/images/app/live-map-phone.webp",
   phoneAlt = "The same live race on a phone",
   url = "astertrack.app/…",
   priority = false,
   className = "",
+  desktopVideoSrc,
+  desktopPoster,
+  phoneVideoSrc,
+  phonePoster,
 }: {
   desktopSrc?: string;
   desktopAlt?: string;
@@ -25,6 +29,11 @@ export default function DeviceDuo({
   url?: string;
   priority?: boolean;
   className?: string;
+  // When set, the frame animates the ambient replay clip instead of the still.
+  desktopVideoSrc?: string;
+  desktopPoster?: string;
+  phoneVideoSrc?: string;
+  phonePoster?: string;
 }) {
   return (
     <div className={`relative pb-[9%] ${className}`}>
@@ -36,6 +45,8 @@ export default function DeviceDuo({
           url={url}
           priority={priority}
           sizes="(min-width: 1024px) 620px, 86vw"
+          videoSrc={desktopVideoSrc}
+          poster={desktopPoster}
         />
       </div>
       {/* Phone overlaps the browser's lower-left — pocket-first, big-screen too. */}
@@ -44,6 +55,8 @@ export default function DeviceDuo({
           src={phoneSrc}
           alt={phoneAlt}
           sizes="(min-width: 640px) 210px, 30vw"
+          videoSrc={phoneVideoSrc}
+          poster={phonePoster}
         />
       </div>
     </div>

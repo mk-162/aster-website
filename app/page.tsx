@@ -277,6 +277,10 @@ export default function Home() {
               desktopAlt="The Aster desktop spectator view: dark sidebar, live map of a 100-rider race, and the leaderboard panel"
               phoneAlt="The same live race, followed from a phone"
               url="astertrack.app/watch/…"
+              desktopVideoSrc="/images/app/replay-desktop.mp4"
+              desktopPoster="/images/app/replay-desktop-poster.webp"
+              phoneVideoSrc="/images/app/replay-phone.mp4"
+              phonePoster="/images/app/replay-phone-poster.webp"
             />
           </div>
         </Section>
@@ -309,7 +313,7 @@ export default function Home() {
               ))}
             </div>
             <PhoneFrame
-              src="/images/app/live-riders-phone.png"
+              src="/images/app/live-riders-phone.webp"
               alt="The Aster riders list on a phone: the live leaderboard of a race in progress"
               className="max-w-[280px] md:max-w-[320px] mx-auto"
             />

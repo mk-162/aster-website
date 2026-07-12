@@ -150,9 +150,11 @@ export default function ForWatchers() {
               </div>
             </div>
             <PhoneFrame
-              src="/images/app/live-riders-phone.png"
-              alt="The Aster riders list on a phone: the live leaderboard of a race in progress"
+              src="/images/app/live-map-phone.webp"
+              alt="The live race on a phone: rider dots moving along the route as the field spreads out"
               className="max-w-[280px] md:max-w-[320px] mx-auto"
+              videoSrc="/images/app/replay-phone.mp4"
+              poster="/images/app/replay-phone-poster.webp"
             />
           </div>
         </Section>

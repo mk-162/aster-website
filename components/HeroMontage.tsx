@@ -16,7 +16,7 @@ export default function HeroMontage({ className = "" }: { className?: string }) 
         <div className="rounded-[30px] border-2 border-dark bg-dark p-2 shadow-pop-lime">
           <div className="relative overflow-hidden rounded-[22px] aspect-[390/620]">
             <Image
-              src="/images/app/live-riders-phone.png"
+              src="/images/app/live-riders-phone.webp"
               alt="The live leaderboard: ranks, distance to go, and time gaps"
               fill
               priority
@@ -34,9 +34,9 @@ export default function HeroMontage({ className = "" }: { className?: string }) 
           SR
         </span>
         <span className="leading-tight">
-          <span className="block text-[13px] font-semibold text-dark">Sim Rider 20</span>
+          <span className="block text-[13px] font-semibold text-dark">Sim Rider 05</span>
           <span className="block font-condensed uppercase tracking-[0.05em] text-[10px] font-bold text-lime-deep">
-            Leader · 1.8 km to go
+            Leader · 1.3 km to go
           </span>
         </span>
       </div>

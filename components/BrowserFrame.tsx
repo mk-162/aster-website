@@ -1,8 +1,10 @@
 import Image from "next/image";
+import ReplayVideo from "./ReplayVideo";
 
 /** Dark browser chrome for desktop app screenshots — title bar with three
  * dots and a URL pill. DS language: 2px dark border + pop shadow.
- * Screenshots are 2880×1800 desktop captures. */
+ * Screenshots are 2880×1800 desktop captures; pass `videoSrc` + `poster` to
+ * show an ambient looping replay clip instead (1600×1000, same 1.6 ratio). */
 export default function BrowserFrame({
   src,
   alt,
@@ -10,6 +12,8 @@ export default function BrowserFrame({
   priority = false,
   className = "",
   sizes = "(min-width: 1024px) 640px, 92vw",
+  videoSrc,
+  poster,
 }: {
   src: string;
   alt: string;
@@ -17,6 +21,8 @@ export default function BrowserFrame({
   priority?: boolean;
   className?: string;
   sizes?: string;
+  videoSrc?: string;
+  poster?: string;
 }) {
   return (
     <div
@@ -33,15 +39,26 @@ export default function BrowserFrame({
         </span>
         <span aria-hidden className="w-[46px]" />
       </div>
-      <Image
-        src={src}
-        alt={alt}
-        width={2880}
-        height={1800}
-        priority={priority}
-        sizes={sizes}
-        className="block w-full h-auto"
-      />
+      {videoSrc && poster ? (
+        <ReplayVideo
+          src={videoSrc}
+          poster={poster}
+          alt={alt}
+          width={1600}
+          height={1000}
+          className="block w-full h-auto"
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          width={2880}
+          height={1800}
+          priority={priority}
+          sizes={sizes}
+          className="block w-full h-auto"
+        />
+      )}
     </div>
   );
 }

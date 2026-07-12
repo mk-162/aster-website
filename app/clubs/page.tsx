@@ -224,10 +224,12 @@ export default function Clubs() {
           <div className="grid gap-10 md:grid-cols-3 items-start">
             <figure className="m-0">
               <PhoneFrame
-                src="/images/app/live-map-phone.png"
-                alt="A club route on the live map, with members along it"
+                src="/images/app/live-map-phone.webp"
+                alt="A club route on the live map, with members moving along it"
                 className="max-w-[240px] mx-auto"
                 sizes="240px"
+                videoSrc="/images/app/replay-phone.mp4"
+                poster="/images/app/replay-phone-poster.webp"
               />
               <figcaption className="text-center mt-5">
                 <span className="font-condensed uppercase tracking-[0.04em] font-semibold text-dark">
@@ -240,7 +242,7 @@ export default function Clubs() {
             </figure>
             <figure className="m-0">
               <PhoneFrame
-                src="/images/app/live-riders-phone.png"
+                src="/images/app/live-riders-phone.webp"
                 alt="The live members list — who is out, in what order, and the gaps between them"
                 className="max-w-[240px] mx-auto"
                 sizes="240px"
@@ -256,9 +258,11 @@ export default function Clubs() {
             </figure>
             <figure className="m-0 md:pt-10">
               <BrowserFrame
-                src="/images/app/live-map-desktop.png"
+                src="/images/app/live-map-desktop.webp"
                 alt="The same outing followed from home in a desktop browser"
                 url="astertrack.app/…"
+                videoSrc="/images/app/replay-desktop.mp4"
+                poster="/images/app/replay-desktop-poster.webp"
               />
               <figcaption className="text-center mt-5">
                 <span className="font-condensed uppercase tracking-[0.04em] font-semibold text-dark">

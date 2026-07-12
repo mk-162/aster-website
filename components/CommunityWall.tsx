@@ -155,7 +155,7 @@ export default function CommunityWall() {
           ))}
         </div>
         <PhoneFrame
-          src="/images/app/live-riders-phone.png"
+          src="/images/app/live-riders-phone.webp"
           alt="The Aster app mid-race: the live riders list and map, the social heart of the wall"
           className="mx-auto mt-6 max-w-[240px] rotate-[1.5deg] md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:z-20 md:max-w-[250px] lg:max-w-[280px] md:w-full"
           sizes="(min-width: 1024px) 280px, 240px"
