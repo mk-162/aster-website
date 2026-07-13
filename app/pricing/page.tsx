@@ -3,54 +3,38 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import Section from "@/components/Section";
 import Kicker from "@/components/Kicker";
-import RouteMotif from "@/components/RouteMotif";
 import PlanCards from "./PlanCards";
 
 export const metadata: Metadata = {
-  title: "Pricing — free for athletes and watchers",
+  title: "Pricing — free to ride and watch",
   description:
-    "Athletes and watchers ride and watch free, forever. Simple group plans for clubs, a per-event organiser subscription, and enterprise white-glove service.",
+    "Riding and watching are free forever. Aster Plus is your £1.99/mo membership to every club; Aster Organiser is a simple per-size subscription for events. Only club riders and organisers ever pay.",
   alternates: { canonical: "/pricing" },
 };
 
-/* Pricing (EXPERIMENTAL model, founder 2026-07-02 v3): Group / Event
- * Organiser / Enterprise. All numbers are dummy placeholders under review —
- * they live in lib/pricing.ts and are not wired to checkout. */
+/* Pricing (MONETIZATION PIVOT, founder 2026-07-13): the dark hero is gone —
+ * the green "Forever" band is the single lead-in above the tables, and the
+ * £1.99 message lives in the splash on the Plus card, not a headline. Two
+ * products live in the tabs below; numbers live in lib/pricing.ts. */
 export default function PricingPage() {
   return (
     <>
       <SiteNav />
       <main>
-        <Section tone="dark" className="!overflow-hidden">
-          <RouteMotif tone="dark" variant={2} />
-          <div className="relative z-10 text-center">
-            <Kicker tone="dark">Pricing · Simple on purpose</Kicker>
-            <h1 className="font-condensed uppercase font-bold tracking-[-0.01em] leading-[0.95] text-[clamp(40px,7vw,72px)] text-mint mt-3 mb-4">
-              The people pay nothing.
-              <br />
-              <span className="text-lime">The organisers pay one bill.</span>
-            </h1>
-            <p className="text-lg leading-normal text-mint/70 max-w-[52ch] mx-auto">
-              Tracking, sharing, and watching are free for every athlete and
-              every follower, forever. Clubs and organisers pick a plan sized
-              to them.
-            </p>
-          </div>
-        </Section>
-
-        {/* FREE FOREVER — the most important line on the page (founder). */}
+        {/* FREE FOREVER — the single lead-in and the page's <h1> (founder). */}
         <section className="bg-lime border-y-2 border-dark">
-          <div className="container-site py-10 md:py-12 text-center">
-            <p className="font-condensed uppercase font-bold tracking-[-0.01em] leading-[0.95] text-[clamp(28px,4.5vw,54px)] text-dark m-0">
-              Taking part is free. Watching is free.
+          <div className="container-site py-12 md:py-16 text-center">
+            <h1 className="font-condensed uppercase font-bold tracking-[-0.01em] leading-[0.95] text-[clamp(28px,4.5vw,54px)] text-dark m-0">
+              Free to take part, or spectate.
               <br />
-              <span className="inline-block mt-1 bg-dark text-lime px-4 py-1 rounded-xl">
+              Free solo, or with a few friends.
+              <br />
+              <span className="inline-block mt-2 bg-dark text-lime px-4 py-1 rounded-xl">
                 Forever.
               </span>
-            </p>
-            <p className="text-[17px] text-dark/70 font-medium max-w-[54ch] mx-auto mt-4 mb-0">
-              Anyone taking part in an event, and anyone spectating one, never
-              pays Aster a penny. No trial, no tier, no catch — only clubs and
+            </h1>
+            <p className="text-[17px] text-dark/70 font-medium max-w-[56ch] mx-auto mt-5 mb-0">
+              No trial, no tier, no catch — only club riders and event
               organisers ever pay.
             </p>
           </div>
@@ -69,20 +53,24 @@ export default function PricingPage() {
             <div className="space-y-6">
               {[
                 {
-                  q: "Can I try it before paying?",
-                  a: "Yes. Create your event free and see the whole thing — the map, the branding, the sponsor slots. It stays private until your plan is active; then you go live.",
+                  q: "Do I have to pay to join a club?",
+                  a: "Only once a club grows. A club's first three members are always free. From the fourth member on you'll need Aster Plus — £1.99 a month, billed annually. Some clubs choose to cover it for their members, so you may never pay even that.",
+                },
+                {
+                  q: "Can I be in more than one club?",
+                  a: "Yes — one Aster Plus covers every club you ride with. It's a membership, not a per-club fee, and it's portable: join, leave, and join again without paying twice.",
+                },
+                {
+                  q: "Do watchers or entrants ever pay Aster?",
+                  a: "Never. Following, cheering, and taking part in an event are free forever. Organisers pay to take registrations — entrants and spectators don't pay Aster a penny, and your entry fees are your business.",
+                },
+                {
+                  q: "What's the difference between the organiser tiers?",
+                  a: "Only the number of registrations per event. Every tier has the same features — event page, community, live GPS tracking, and full sponsorship control. Start free with up to three registrations by share-link, then pick the size that fits your field.",
                 },
                 {
                   q: "What happens if I stop paying?",
                   a: "Everything you've built stays yours and stays visible. Nothing is deleted and old rides, results, and posts remain readable — new activity just pauses until the plan is active again.",
-                },
-                {
-                  q: "Do my members or entrants ever pay Aster?",
-                  a: "No. Athletes and watchers never pay. Your entry fees are your business — we don't take a cut.",
-                },
-                {
-                  q: "What does a sponsor slot have to do with the price?",
-                  a: "Your live map is watched all day by exactly the audience local sponsors want. One digital sponsor slot, sold once, typically covers your Aster subscription.",
                 },
               ].map(({ q, a }) => (
                 <div key={q} className="border-2 border-dark rounded-2xl bg-white shadow-pop-1 p-5">

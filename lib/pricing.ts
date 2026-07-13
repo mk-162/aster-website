@@ -35,50 +35,90 @@ export const CLUB_BANDS = [
 export const CONSUMER_PRICE = "free" as const;
 
 /* ---------------------------------------------------------------------------
- * EXPERIMENTAL site pricing (founder, 2026-07-02 v3) — the /pricing page model.
- * Three plans: Group / Event Organiser / Enterprise. Organiser is a
- * SUBSCRIPTION (includes N events/month, scalable via dropdown); Group scales
- * by member size; Enterprise is POA (white glove, dedicated server, extended
- * marketing + sponsorship packages).
+ * SITE pricing — MONETIZATION PIVOT (founder, 2026-07-13). Supersedes the
+ * Group/Organiser/Enterprise experiment above for the /pricing page.
  *
- * ALL NUMBERS BELOW ARE DUMMY placeholders for founder review. The app's
- * billing machinery still runs the banded model above — do NOT wire these to
- * checkout until the model is confirmed.
+ * Two products, two payers:
+ *   • Aster Plus — individual membership. Join any club as its 4th+ member;
+ *     unlimited favourites. ONE membership, EVERY club (portable — a member
+ *     with Plus uses no club seat). Paid by the joining member.
+ *   • Aster Organiser — event-registration subscription. Free preview (3
+ *     registrations, share-link only, not on discovery); paid tiers are
+ *     feature-identical and differ ONLY by the registration cap per event.
+ *
+ * Everyone else is free forever: spectating, riding, creating events/clubs,
+ * event discovery, and being one of a club's first 3 active members.
+ *
+ * Annual billing is ~a third off (not a flat %, and NOT uniform across tiers
+ * — Tier 3 is 25% off, the rest ~33%), so we show both prices and compute the
+ * per-tier saving rather than badge a single number. NOT wired to checkout.
  * ------------------------------------------------------------------------- */
 
-export interface PlanStep {
+/** Aster Plus — the individual membership (the ONLY consumer paid product). */
+export const PLUS = {
+  /** Headline price: annual billing, shown per month. */
+  annualMonthGbp: 1.99,
+  /** Rolling monthly billing. */
+  monthGbp: 2.99,
+  /** Full annual charge (1.99 × 12). */
+  annualTotalGbp: 23.88,
+  /** A club's first N members are free forever; the (N+1)th needs Plus. */
+  freeClubMembers: 3,
+} as const;
+
+/** Aster Free — what every rider and watcher gets, forever. */
+export const FREE_FEATURES = [
+  "Follow & cheer any rider — no account needed to watch",
+  "Track your own rides & runs",
+  "Create your own events & clubs",
+  "Get discovered on the map",
+  "Be one of a club’s first 3 members — free forever",
+] as const;
+
+/** Aster Plus — everything in Free, plus these. */
+export const PLUS_FEATURES = [
+  "Join any club as a full member — 4th, 40th, doesn’t matter",
+  "One membership covers every club you ride with",
+  "Unlimited favourites",
+] as const;
+
+/** Event Organiser — registration-capped subscription. Features are identical
+ *  on every tier; only `cap` changes. */
+export interface OrganiserTier {
+  /** Max registrations per event. */
+  cap: number;
+  /** Display label, e.g. "500". */
   label: string;
+  /** Rolling monthly billing. */
   monthGbp: number;
-  yearGbp: number;
-  /** Per-unit price framing shown under the headline price. */
-  unit?: string;
+  /** Annual billing, shown per month. */
+  annualMonthGbp: number;
 }
 
-/** Annual = 25% off (yearGbp = monthGbp × 9). */
-export const ANNUAL_DISCOUNT_PCT = 25;
+/** Free preview cap before a paid tier is needed. */
+export const ORGANISER_FREE_CAP = 3;
 
-/** Group (clubs) — scaled by active member count. DUMMY numbers.
- *  Free ≤10 stays outside the dropdown. `unit` powers per-member framing. */
-export const GROUP_STEPS: PlanStep[] = [
-  { label: "Up to 25 members", monthGbp: 10, yearGbp: 90, unit: "≈ £3.60 per member per year" },
-  { label: "Up to 75 members", monthGbp: 15, yearGbp: 135, unit: "≈ £1.80 per member per year" },
-  { label: "Up to 200 members", monthGbp: 30, yearGbp: 270, unit: "≈ £1.35 per member per year" },
-  { label: "Up to 500 members", monthGbp: 60, yearGbp: 540, unit: "≈ £1.10 per member per year" },
+export const ORGANISER_TIERS: OrganiserTier[] = [
+  { cap: 100, label: "100", monthGbp: 75, annualMonthGbp: 50 },
+  { cap: 500, label: "500", monthGbp: 150, annualMonthGbp: 100 },
+  { cap: 1000, label: "1,000", monthGbp: 200, annualMonthGbp: 150 },
 ];
 
-/** Event Organiser — subscription including N events per month. DUMMY numbers. */
-export const ORGANISER_STEPS: PlanStep[] = [
-  { label: "3 events / month", monthGbp: 99, yearGbp: 891, unit: "≈ £33 per event" },
-  { label: "5 events / month", monthGbp: 149, yearGbp: 1341, unit: "≈ £30 per event" },
-  { label: "10 events / month", monthGbp: 249, yearGbp: 2241, unit: "≈ £25 per event" },
-  { label: "20 events / month", monthGbp: 399, yearGbp: 3591, unit: "≈ £20 per event" },
-];
+/** Included on EVERY organiser tier — the point is that they're all the same. */
+export const ORGANISER_FEATURES = [
+  "Your own event page & event community",
+  "Full event management tools",
+  "Live GPS tracking for every entrant",
+  "Sponsorship control — your slots, your revenue",
+  "Unlimited followers — no login to watch",
+  "Entrants never pay Aster a penny",
+] as const;
 
-/** Enterprise — POA. */
+/** Enterprise — 1,000+, sales-negotiated. */
 export const ENTERPRISE_FEATURES = [
-  "White-glove service — we run tracking at your events",
-  "Dedicated server and priority infrastructure",
-  "Extended marketing package",
-  "Sponsorship packages and inventory support",
-  "Custom capacity, custom terms",
+  "Unlimited registrations — fields of 1,000+",
+  "White-glove event support",
+  "Dedicated infrastructure & priority uptime",
+  "Sponsorship & marketing packages",
+  "Custom terms, sales-negotiated",
 ] as const;
