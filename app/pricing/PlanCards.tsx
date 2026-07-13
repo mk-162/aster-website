@@ -278,14 +278,20 @@ function OrganisersView() {
   const [annual, setAnnual] = useState(true);
   return (
     <div>
-      {/* Free preview strip */}
-      <div className="max-w-[760px] mx-auto mb-8 border-2 border-dark rounded-2xl bg-white shadow-pop-1 px-5 py-4 text-center">
-        <p className="text-[15px] text-dark leading-normal m-0">
-          <span className="font-condensed uppercase tracking-[0.04em] font-bold text-dark">
-            Try it free —{" "}
-          </span>
-          up to {ORGANISER_FREE_CAP} registrations on any event, shared by link.
-          Ready to open it up? Pick the size that fits your field.
+      {/* Benefit-led headline — lead with the value, not the free demo. */}
+      <div className="text-center max-w-[640px] mx-auto mb-9">
+        <p className="font-condensed uppercase tracking-[0.08em] font-semibold text-[13px] text-lime-deep mb-2.5">
+          Aster Organiser
+        </p>
+        <h2 className="font-condensed uppercase font-bold tracking-[-0.01em] leading-[0.98] text-[clamp(26px,3.6vw,40px)] text-dark m-0">
+          Make your event <span className="text-lime-deep">more visible</span>,{" "}
+          <span className="text-lime-deep">more fun</span>, and{" "}
+          <span className="text-lime-deep">safer</span>.
+        </h2>
+        <p className="text-[16px] text-dark/70 leading-normal mt-4 mb-0 max-w-[54ch] mx-auto">
+          Live GPS tracking, one page your whole community follows, and full
+          control of your event — the same on every plan. Just pick the size
+          that fits your field.
         </p>
       </div>
 
@@ -376,6 +382,19 @@ function OrganisersView() {
           </p>
           <FeatureList items={ENTERPRISE_FEATURES} className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 !space-y-0" />
         </div>
+      </div>
+
+      {/* Demo — deliberately at the bottom, not a leading position. It's a
+          preview of the real thing, not a free tier to run an event on. */}
+      <div className="mt-6 border-2 border-dark rounded-2xl bg-white shadow-pop-1 px-5 py-4 sm:px-6 sm:py-5 text-center">
+        <p className="font-condensed uppercase tracking-[0.06em] text-[12px] font-bold text-dark/45 mb-1.5">
+          Want to see it first?
+        </p>
+        <p className="text-[15px] text-dark/75 leading-normal m-0 max-w-[70ch] mx-auto">
+          Set up any event and take up to {ORGANISER_FREE_CAP} registrations by
+          share-link — a free live demo of the real thing, no card needed. Pick
+          a size when you’re ready to open it to your whole field.
+        </p>
       </div>
     </div>
   );
