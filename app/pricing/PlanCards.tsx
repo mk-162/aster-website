@@ -360,7 +360,8 @@ function OrganisersView() {
             <span className="font-condensed font-bold text-[34px] leading-none text-lime">Let’s talk</span>
           </p>
           <p className="text-[13px] text-mint/55 font-medium mt-1.5 mb-5 m-0">
-            Sales-negotiated, built around your event.
+            We offer a range of additional services to larger events to make
+            sure everything runs smoothly.
           </p>
           <div className="mt-auto">
             <Button href={appLinks.organiserDemo} variant="primary" size="sm" className="w-full justify-center">
