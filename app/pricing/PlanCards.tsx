@@ -32,6 +32,9 @@ function gbp(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(2);
 }
 
+/** Yearly saving of Plus annual vs paying monthly (rounded to whole £). */
+const PLUS_SAVE_YR = Math.round(PLUS.monthGbp * 12 - PLUS.annualTotalGbp);
+
 function Check({ dark = false }: { dark?: boolean }) {
   return (
     <svg viewBox="0 0 16 16" aria-hidden className="w-4 h-4 flex-shrink-0 mt-[3px]">
@@ -170,7 +173,8 @@ function BillingToggle({ annual, onChange }: { annual: boolean; onChange: (a: bo
   return (
     <div className="flex justify-center mb-8">
       <div className="inline-flex items-center rounded-full border-2 border-dark bg-white p-1">
-        {(["Monthly", "Annual"] as const).map((t) => {
+        {/* Annual first — lead with the best price (founder). */}
+        {(["Annual", "Monthly"] as const).map((t) => {
           const isAnnual = t === "Annual";
           const active = isAnnual === annual;
           return (
@@ -198,8 +202,9 @@ function BillingToggle({ annual, onChange }: { annual: boolean; onChange: (a: bo
 
 function RidersView() {
   return (
-    <div className="grid gap-6 md:grid-cols-2 max-w-[860px] mx-auto items-start">
-      {/* Aster Free */}
+    <div className="max-w-[860px] mx-auto">
+      <div className="grid gap-6 md:grid-cols-2 items-start">
+        {/* Aster Free */}
       <div className={cardClass}>
         <p className="font-condensed uppercase tracking-[0.04em] font-bold text-2xl text-dark mb-1">
           Aster Free.
@@ -240,7 +245,9 @@ function RidersView() {
           <span className="text-dark/60 text-lg font-medium"> /month</span>
         </p>
         <p className="text-sm text-dark/60 font-medium -mt-2 mb-5 m-0">
-          billed annually (£{gbp(PLUS.annualTotalGbp)}/yr) · or £{gbp(PLUS.monthGbp)} monthly
+          billed annually (£{gbp(PLUS.annualTotalGbp)}/yr) —{" "}
+          <span className="text-lime-deep font-semibold">save £{gbp(PLUS_SAVE_YR)}/yr</span>{" "}
+          vs £{gbp(PLUS.monthGbp)} monthly
         </p>
         <p className="font-condensed uppercase tracking-[0.05em] text-[12px] font-bold text-dark/50 mb-2.5">
           Everything in Free, plus
@@ -257,7 +264,10 @@ function RidersView() {
             Cheaper than most club fees — and it works across all of them
           </p>
         </div>
+        </div>
       </div>
+
+      <ClubBillingPanel />
     </div>
   );
 }
@@ -310,7 +320,15 @@ function OrganisersView() {
                 <span className="text-dark/60 text-base font-medium"> /mo</span>
               </p>
               <p className="text-[13px] text-dark/55 font-medium mt-1.5 mb-5 m-0">
-                {annual ? `billed annually · save £${gbp(save)}/mo` : "billed monthly"}
+                {annual ? (
+                  <>
+                    billed annually ·{" "}
+                    <span className="text-lime-deep font-semibold">save £{gbp(save)}/mo</span>{" "}
+                    vs monthly
+                  </>
+                ) : (
+                  <>£{gbp(tier.annualMonthGbp)}/mo on annual — save £{gbp(save)}/mo</>
+                )}
               </p>
               <div className="mt-auto">
                 <Button
@@ -363,25 +381,48 @@ function OrganisersView() {
   );
 }
 
-/* ---- Club-pays strip (bottom, deliberately understated) --------------- */
-
-function ClubPaysStrip() {
+/* ---- Club billing: self-serve, on-page, deliberately subordinate --------
+ * Sits UNDER the two rider cards (it's a club-owner action, not a third
+ * consumer option) so the Free-vs-Plus choice stays the clean headline. No
+ * "talk to us" — the per-seat price is shown up front and setup is self-serve. */
+function ClubBillingPanel() {
   return (
-    <div className="mt-10 border-2 border-dark rounded-2xl bg-white shadow-pop-1 overflow-hidden">
-      <div className="grid sm:grid-cols-[1fr_auto] items-center gap-4 p-5 sm:p-6">
-        <div>
-          <p className="font-condensed uppercase tracking-[0.04em] font-bold text-lg text-dark mb-1">
-            Run a club? You can cover your riders.
+    <div className="mt-6 border-2 border-dark rounded-2xl bg-white shadow-pop-1 overflow-hidden">
+      <div className="grid sm:grid-cols-[1fr_auto] items-center gap-5 p-5 sm:p-6">
+        <div className="min-w-0">
+          <p className="font-condensed uppercase tracking-[0.06em] text-[11px] font-bold text-dark/45 mb-1.5">
+            For club owners · optional
           </p>
-          <p className="text-[14px] text-dark/70 leading-normal m-0 max-w-[62ch]">
-            Prefer your members to join free? Buy Plus seats for the club at
-            member price and pick up the bill yourself. Riders who already have
-            their own Plus don’t use a seat.
+          <p className="font-condensed uppercase tracking-[0.03em] font-bold text-lg text-dark mb-1.5">
+            Rather cover your riders? One bill for the whole club.
+          </p>
+          <p className="text-[14px] text-dark/70 leading-normal m-0 max-w-[60ch]">
+            Buy Plus seats and your members join free — nobody hits the £
+            {gbp(PLUS.annualMonthGbp)} when your club grows past{" "}
+            {PLUS.freeClubMembers}. Riders who already have their own Plus don’t
+            use a seat, so you only pay for who needs it.
           </p>
         </div>
-        <Button href={appLinks.organiserDemo} variant="secondary" size="sm" className="justify-center whitespace-nowrap">
-          Talk to us about club billing
-        </Button>
+        <div className="min-w-0 sm:pl-5 sm:border-l-2 border-dark/10 sm:text-right">
+          <p className="m-0">
+            <span className="text-[13px] text-dark/55 font-medium align-middle">from </span>
+            <span className="font-condensed font-bold text-[30px] leading-none text-dark align-middle">
+              £{gbp(PLUS.monthGbp)}
+            </span>
+            <span className="text-dark/55 text-sm font-medium align-middle"> /seat/mo</span>
+          </p>
+          <p className="text-[12px] text-dark/50 font-medium mt-1 mb-3 m-0">
+            {PLUS.freeClubMembers} seats free · volume discounts as you grow
+          </p>
+          <Button
+            href={appLinks.signup}
+            variant="secondary"
+            size="sm"
+            className="w-full sm:w-auto justify-center whitespace-nowrap"
+          >
+            Set up club billing
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -395,7 +436,6 @@ export default function PlanCards() {
     <div>
       <TabSwitch tab={tab} onChange={setTab} />
       {tab === "riders" ? <RidersView /> : <OrganisersView />}
-      <ClubPaysStrip />
     </div>
   );
 }
