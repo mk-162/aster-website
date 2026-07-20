@@ -4,13 +4,12 @@
  *
  * Two tabs, because there are two payers with two different stories:
  *   • "Ride & join clubs"  → Aster Free vs Aster Plus (opens here by default;
- *      the £1.99 splash carries the low-price message — no hero shouts it).
+ *      the £2.99 splash carries the low-price message — no hero shouts it).
  *   • "Organise events"    → 3 registration-capped tiers + Enterprise, all
  *      feature-identical, so we show the features ONCE and let the columns
  *      differ only by cap.
  *
- * Club-pays is deliberately NOT a table — it's a slim strip at the very bottom
- * (founder: keep the main page simple). Numbers come only from lib/pricing.ts
+ * Clubs do not pay for seats or a plan. Numbers come only from lib/pricing.ts
  * and nothing here wires to checkout yet. */
 
 import { useState } from "react";
@@ -32,8 +31,6 @@ function gbp(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(2);
 }
 
-/** Yearly saving of Plus annual vs paying monthly (rounded to whole £). */
-const PLUS_SAVE_YR = Math.round(PLUS.monthGbp * 12 - PLUS.annualTotalGbp);
 
 function Check({ dark = false }: { dark?: boolean }) {
   return (
@@ -71,7 +68,7 @@ function FeatureList({
 const cardClass =
   "min-w-0 bg-white border-2 border-dark rounded-2xl shadow-pop-2 p-6 sm:p-7 flex flex-col";
 
-/* ---- £1.99 price splash ---------------------------------------------- */
+/* ---- £2.99 price splash ---------------------------------------------- */
 /* A retail-style starburst so the low number pops without a hero headline.
  * Path is deterministic (fixed angles — no random/date), built once. */
 const BURST_D = (() => {
@@ -114,7 +111,7 @@ function PriceSplash() {
           className="font-condensed"
           style={{ fontWeight: 700, fontSize: 34, fill: "#181E15" }}
         >
-          £{gbp(PLUS.annualMonthGbp)}
+          £{gbp(PLUS.monthGbp)}
         </text>
         <text
           x="60"
@@ -167,36 +164,6 @@ function TabSwitch({ tab, onChange }: { tab: Tab; onChange: (t: Tab) => void }) 
   );
 }
 
-/* ---- billing (monthly / annual) toggle — organiser tab only ----------- */
-
-function BillingToggle({ annual, onChange }: { annual: boolean; onChange: (a: boolean) => void }) {
-  return (
-    <div className="flex justify-center mb-8">
-      <div className="inline-flex items-center rounded-full border-2 border-dark bg-white p-1">
-        {/* Annual first — lead with the best price (founder). */}
-        {(["Annual", "Monthly"] as const).map((t) => {
-          const isAnnual = t === "Annual";
-          const active = isAnnual === annual;
-          return (
-            <button
-              key={t}
-              onClick={() => onChange(isAnnual)}
-              aria-pressed={active}
-              className={`font-condensed uppercase tracking-[0.05em] text-[13px] font-bold px-5 py-2 rounded-full transition-colors ${
-                active ? "bg-dark text-mint" : "text-dark hover:bg-stone"
-              }`}
-            >
-              {t}
-              {isAnnual && (
-                <span className={`ml-1.5 ${active ? "text-lime" : "text-lime-deep"}`}>save ⅓</span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 /* ---- Riders view: Aster Free vs Aster Plus ---------------------------- */
 
@@ -240,22 +207,18 @@ function RidersView() {
         </p>
         <p className="my-4">
           <span className="font-condensed font-bold text-[52px] leading-none text-dark">
-            £{gbp(PLUS.annualMonthGbp)}
+            £{gbp(PLUS.monthGbp)}
           </span>
           <span className="text-dark/60 text-lg font-medium"> /month</span>
         </p>
         <p className="text-sm text-dark/60 font-medium -mt-2 mb-5 m-0">
-          billed annually (£{gbp(PLUS.annualTotalGbp)}/yr) —{" "}
-          <span className="text-lime-deep font-semibold">save £{gbp(PLUS_SAVE_YR)}/yr</span>{" "}
-          vs £{gbp(PLUS.monthGbp)} monthly
+          Billed monthly. Cancel whenever you need to.
         </p>
         <p className="font-condensed uppercase tracking-[0.05em] text-[12px] font-bold text-dark/50 mb-2.5">
           Everything in Free, plus
         </p>
         <FeatureList items={PLUS_FEATURES} className="mb-4" />
-        <p className="border-2 border-dark rounded-xl bg-lime-bg px-3 py-2 text-[13px] font-medium text-dark mb-6 m-0">
-          Some clubs cover this for their members — you may never pay it.
-        </p>
+
         <div className="mt-auto">
           <Button href={appLinks.signup} variant="primary" className="w-full justify-center">
             Get Aster Plus
@@ -267,7 +230,6 @@ function RidersView() {
         </div>
       </div>
 
-      <ClubBillingPanel />
     </div>
   );
 }
@@ -275,7 +237,6 @@ function RidersView() {
 /* ---- Organisers view: 3 capped tiers + Enterprise --------------------- */
 
 function OrganisersView() {
-  const [annual, setAnnual] = useState(true);
   return (
     <div>
       {/* Benefit-led headline — lead with the value, not the free demo. */}
@@ -295,14 +256,12 @@ function OrganisersView() {
         </p>
       </div>
 
-      <BillingToggle annual={annual} onChange={setAnnual} />
 
       {/* Capacity is the only lever — every tier is otherwise identical. */}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
         {ORGANISER_TIERS.map((tier, i) => {
           const featured = i === 1; // 500 — gentle anchor
-          const price = annual ? tier.annualMonthGbp : tier.monthGbp;
-          const save = tier.monthGbp - tier.annualMonthGbp;
+          const price = tier.monthGbp;
           return (
             <div
               key={tier.cap}
@@ -326,15 +285,7 @@ function OrganisersView() {
                 <span className="text-dark/60 text-base font-medium"> /mo</span>
               </p>
               <p className="text-[13px] text-dark/55 font-medium mt-1.5 mb-5 m-0">
-                {annual ? (
-                  <>
-                    billed annually ·{" "}
-                    <span className="text-lime-deep font-semibold">save £{gbp(save)}/mo</span>{" "}
-                    vs monthly
-                  </>
-                ) : (
-                  <>£{gbp(tier.annualMonthGbp)}/mo on annual — save £{gbp(save)}/mo</>
-                )}
+                Billed monthly. Cancel whenever you need to.
               </p>
               <div className="mt-auto">
                 <Button
@@ -401,52 +352,6 @@ function OrganisersView() {
   );
 }
 
-/* ---- Club billing: self-serve, on-page, deliberately subordinate --------
- * Sits UNDER the two rider cards (it's a club-owner action, not a third
- * consumer option) so the Free-vs-Plus choice stays the clean headline. No
- * "talk to us" — the per-seat price is shown up front and setup is self-serve. */
-function ClubBillingPanel() {
-  return (
-    <div className="mt-6 border-2 border-dark rounded-2xl bg-white shadow-pop-1 overflow-hidden">
-      <div className="grid sm:grid-cols-[1fr_auto] items-center gap-5 p-5 sm:p-6">
-        <div className="min-w-0">
-          <p className="font-condensed uppercase tracking-[0.06em] text-[11px] font-bold text-dark/45 mb-1.5">
-            For club owners · optional
-          </p>
-          <p className="font-condensed uppercase tracking-[0.03em] font-bold text-lg text-dark mb-1.5">
-            Rather cover your riders? One bill for the whole club.
-          </p>
-          <p className="text-[14px] text-dark/70 leading-normal m-0 max-w-[60ch]">
-            Buy Plus seats and your members join free — nobody hits the £
-            {gbp(PLUS.annualMonthGbp)} when your club grows past{" "}
-            {PLUS.freeClubMembers}. Riders who already have their own Plus don’t
-            use a seat, so you only pay for who needs it.
-          </p>
-        </div>
-        <div className="min-w-0 sm:pl-5 sm:border-l-2 border-dark/10 sm:text-right">
-          <p className="m-0">
-            <span className="text-[13px] text-dark/55 font-medium align-middle">from </span>
-            <span className="font-condensed font-bold text-[30px] leading-none text-dark align-middle">
-              £{gbp(PLUS.monthGbp)}
-            </span>
-            <span className="text-dark/55 text-sm font-medium align-middle"> /seat/mo</span>
-          </p>
-          <p className="text-[12px] text-dark/50 font-medium mt-1 mb-3 m-0">
-            {PLUS.freeClubMembers} seats free · volume discounts as you grow
-          </p>
-          <Button
-            href={appLinks.signup}
-            variant="secondary"
-            size="sm"
-            className="w-full sm:w-auto justify-center whitespace-nowrap"
-          >
-            Set up club billing
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ---- root ------------------------------------------------------------- */
 

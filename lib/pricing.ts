@@ -2,7 +2,7 @@
  *
  * Source: docs/2026-07-01-business-model-final.md (main repo) for event bands,
  * founder decision 2026-07-02 for the size-banded club tiers (supersedes the
- * doc's flat £15/mo club price). Annual = two months free (monthly × 10).
+ * doc's flat £15/mo club price).
  *
  * NOTE: whether these render publicly or sit behind "talk to us" is a pending
  * founder decision — pages must import from here either way, never inline
@@ -49,19 +49,14 @@ export const CONSUMER_PRICE = "free" as const;
  * Everyone else is free forever: spectating, riding, creating events/clubs,
  * event discovery, and being one of a club's first 3 active members.
  *
- * Annual billing is ~a third off (not a flat %, and NOT uniform across tiers
- * — Tier 3 is 25% off, the rest ~33%), so we show both prices and compute the
- * per-tier saving rather than badge a single number. NOT wired to checkout.
+ * Billing is monthly-only. Clubs do not buy seats or plans; a rider who needs
+ * Plus pays for their own portable membership. NOT wired to checkout.
  * ------------------------------------------------------------------------- */
 
 /** Aster Plus — the individual membership (the ONLY consumer paid product). */
 export const PLUS = {
-  /** Headline price: annual billing, shown per month. */
-  annualMonthGbp: 1.99,
   /** Rolling monthly billing. */
   monthGbp: 2.99,
-  /** Full annual charge (1.99 × 12). */
-  annualTotalGbp: 23.88,
   /** A club's first N members are free forever; the (N+1)th needs Plus. */
   freeClubMembers: 3,
 } as const;
@@ -91,17 +86,16 @@ export interface OrganiserTier {
   label: string;
   /** Rolling monthly billing. */
   monthGbp: number;
-  /** Annual billing, shown per month. */
-  annualMonthGbp: number;
+
 }
 
 /** Free preview cap before a paid tier is needed. */
 export const ORGANISER_FREE_CAP = 3;
 
 export const ORGANISER_TIERS: OrganiserTier[] = [
-  { cap: 100, label: "100", monthGbp: 75, annualMonthGbp: 50 },
-  { cap: 500, label: "500", monthGbp: 150, annualMonthGbp: 100 },
-  { cap: 1000, label: "1,000", monthGbp: 200, annualMonthGbp: 150 },
+  { cap: 100, label: "100", monthGbp: 79.99 },
+  { cap: 500, label: "500", monthGbp: 149.99 },
+  { cap: 1000, label: "1,000", monthGbp: 199.99 },
 ];
 
 /** Included on EVERY organiser tier — the point is that they're all the same. */

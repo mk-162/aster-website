@@ -8,13 +8,13 @@ import PlanCards from "./PlanCards";
 export const metadata: Metadata = {
   title: "Pricing — free to ride and watch",
   description:
-    "Riding and watching are free forever. Aster Plus is your £1.99/mo membership to every club; Aster Organiser is a simple per-size subscription for events. Only club riders and organisers ever pay.",
+    "Riding and watching are free forever. Aster Plus is £2.99/month for club members after the first three; Aster Organiser has simple monthly plans sized to your event. Clubs never pay a plan.",
   alternates: { canonical: "/pricing" },
 };
 
 /* Pricing (MONETIZATION PIVOT, founder 2026-07-13): the dark hero is gone —
  * the green "Forever" band is the single lead-in above the tables, and the
- * £1.99 message lives in the splash on the Plus card, not a headline. Two
+ * £2.99 message lives in the splash on the Plus card, not a headline. Two
  * products live in the tabs below; numbers live in lib/pricing.ts. */
 export default function PricingPage() {
   return (
@@ -34,8 +34,8 @@ export default function PricingPage() {
               </span>
             </h1>
             <p className="text-[17px] text-dark/70 font-medium max-w-[56ch] mx-auto mt-5 mb-0">
-              No trial, no tier, no catch — only club riders and event
-              organisers ever pay.
+              No trial, no tier, no catch — only Aster Plus members and event
+              organisers ever pay. Clubs never pay a plan.
             </p>
           </div>
         </section>
@@ -54,7 +54,7 @@ export default function PricingPage() {
               {[
                 {
                   q: "Do I have to pay to join a club?",
-                  a: "Only once a club grows. A club's first three members are always free. From the fourth member on you'll need Aster Plus — £1.99 a month, billed annually. Some clubs choose to cover it for their members, so you may never pay even that.",
+                  a: "Only once a club grows. A club's first three members are always free. From the fourth member on, Aster Plus is £2.99 a month. Clubs do not pay for seats or a plan.",
                 },
                 {
                   q: "Can I be in more than one club?",
