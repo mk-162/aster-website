@@ -104,7 +104,7 @@ const TRACKLEADERS: ComparisonData = {
     {
       question: "What's the pricing?",
       answer:
-        "£3 per rider per event, capped at £6,000 per event. Free under 50 riders for Team-hosted events. No subscription, no platform fee. Riders carry their own phones, so no hardware cost.",
+        "Event Organisers choose a monthly registration-cap plan: £79.99 for up to 100 registrations, £149.99 for 500, or £199.99 for 1,000. Build and test with up to three registrations free. Riders carry their own phones, so there is no hardware cost.",
     },
   ],
 };
@@ -119,9 +119,9 @@ const RACEMAP: ComparisonData = {
     "Aster is a phone-first live tracking platform with an editorial layer baked in. Same phone-tracking capability, dramatically simpler pricing, plus a story feed and watcher experience designed for the audience, not the organiser back-office.",
   features: [
     { feature: "Tracking model", aster: "Rider's phone (web + native iOS / Android)", competitor: "Phone app + hardware trackers, modular" },
-    { feature: "Pricing (500-rider event)", aster: "£1,500 (£3 × 500)", competitor: "~€500+ base, plus per-tracker SIM costs" },
-    { feature: "Pricing model", aster: "Per rider, per event, capped", competitor: "Per map activation + per API + per tracker SIM + per data MB" },
-    { feature: "Free trial", aster: "Free under 50 riders, Team-hosted", competitor: "2-device cap on free trial events" },
+    { feature: "Pricing (500-rider event)", aster: "£149.99/month organiser tier", competitor: "~€500+ base, plus per-tracker SIM costs" },
+    { feature: "Pricing model", aster: "Monthly subscription, sized by registrations", competitor: "Per map activation + per API + per tracker SIM + per data MB" },
+    { feature: "Free preview", aster: "Build and test with up to 3 registrations", competitor: "2-device cap on free trial events" },
     { feature: "Editorial layer", aster: "Story feed, race recaps, athlete profiles, sponsor frames", competitor: "Not in product scope" },
     { feature: "Watcher experience", aster: "Mobile-first live page, story feed, push notifications", competitor: "Functional tracking map" },
     { feature: "Sponsor surface", aster: "Branded tracker pages, sponsor frames, editorial co-production", competitor: "Limited" },
@@ -129,11 +129,11 @@ const RACEMAP: ComparisonData = {
   whyAster: [
     {
       title: "Pricing you can quote on the phone.",
-      body: "RaceMap pricing requires a spreadsheet — €100 per map activation + €200 per API + per-tracker SIMs + per-MB-SMS. Aster is £3 per rider per event, capped at £6,000. That's it.",
+      body: "RaceMap pricing requires a spreadsheet — €100 per map activation + €200 per API + per-tracker SIMs + per-MB-SMS. Aster is a single monthly Event Organiser plan: £79.99 for up to 100 registrations, £149.99 for 500, or £199.99 for 1,000. No tracker rentals or per-rider charge.",
     },
     {
-      title: "Dramatically cheaper at typical sizes.",
-      body: "A 500-rider event on Aster costs £1,500. The same event on RaceMap is €500+ base plus per-tracker SIM costs — typically 3x more once you add the SIMs. The savings get sharper as the event gets bigger.",
+      title: "Predictable monthly cost.",
+      body: "Aster’s registration cap applies to each event, while one monthly plan covers your calendar. There are no tracker rentals, SIM fees, map-activation charges or per-rider charges to reconcile.",
     },
     {
       title: "The editorial layer is the moat.",
